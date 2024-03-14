@@ -1,34 +1,44 @@
 ##
-## EPITECH PROJECT, 2024
-## ex00
-## File description:
+## EPITECH PROJECT, 2022
 ## Makefile
+## File description:
+## Makefile cs
 ##
 
-SRC	= main.c	\
-  
-OBJ	=	$(SRC:.c=.o)
+SRC = ./src/Hostname.cpp\
+	  ./src/Krell.cpp\
+	  ./src/main.cpp\
+	  ./src/Username.cpp\
+	  ./src/Textual.cpp\
+	  ./src/Data.cpp\
+	  ./src/Graphics/CPU.cpp\
+	  ./src/Graphics/Display.cpp\
+	  ./src/Graphics/Ram.cpp\
+	  ./src/Graphics/HostUserName.cpp\
+	  ./src/Date.cpp\
 
 COPIES	=	*~
 
-NAME	=	libstring.a
+OBJ = $(SRC:.cpp=.o)
 
-MAKE	=	make
+OUTPUT = GKrellM
 
-CFLAGS	=	-std=gnu17 -Wall -Wextra
+NAME = $(OUTPUT)
 
-all:	$(NAME)
+CPPFLAGS = -std=c++20 -Wall -Wextra -lncurses
+LIBS = -lsfml-window -lsfml-system -lsfml-graphics -lsfml-audio
 
-$(NAME):	$(OBJ)
-	ar rc -o $(NAME) $(OBJ)
+$(NAME): $(OBJ)
+	g++ $(CPPFLAGS) -o $(OUTPUT) $(OBJ) $(LIBS)
+
+all: $(NAME)
 
 clean:
 	rm -f $(OBJ)
-	rm -f $(COPIES)
-	rm -f *.o
 
-fclean:	clean
-	rm -f $(NAME)
+fclean: clean
+	rm -f $(OUTPUT)
 
-re:     fclean all
-	rm -f $(OBJ)
+re: fclean all
+
+.PHONY: all clean fclean re

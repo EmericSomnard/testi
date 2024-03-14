@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-SRC	= lib/string.c	\
+SRC	= string.c	\
   
 OBJ	=	$(SRC:.c=.o)
 

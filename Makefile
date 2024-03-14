@@ -1,23 +1,34 @@
 ##
 ## EPITECH PROJECT, 2024
-## Makefile
+## ex00
 ## File description:
 ## Makefile
 ##
 
-BUILD = $(shell stack path --local-install-root)
+SRC	= lib/string.c	\
+  
+OBJ	=	$(SRC:.c=.o)
 
-all:
-	stack build
-	cp $(shell stack path --local-install-root)/bin/my-project-exe ./
-	mv my-project-exe wolfram
+COPIES	=	*~
+
+NAME	=	libstring.a
+
+MAKE	=	make
+
+CFLAGS	=	-std=gnu17 -Wall -Wextra
+
+all:	$(NAME)
+
+$(NAME):	$(OBJ)
+	ar rc -o $(NAME) $(OBJ)
 
 clean:
-	stack clean
-	rm -f wolfram
-	rm -f my-project.cabal
-	rm -f stack.yaml.lock
+	rm -f $(OBJ)
+	rm -f $(COPIES)
+	rm -f *.o
 
 fclean:	clean
+	rm -f $(NAME)
 
 re:     fclean all
+	rm -f $(OBJ)
